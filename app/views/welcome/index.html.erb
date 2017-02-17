@@ -1,5 +1,11 @@
 <%= form_for @alarm do |f| %>
-  <%= f.text_area(:content, size: '50x10') %>
+  <%= f.text_area(:content, size: '50x10', :class => "alarm") %>
   <br>
   <%= f.submit %>
+<% end %>
+
+<% @alarms.each do |alarm| %>
+	<div>
+		<%= alarm.content %>
+	</div>
 <% end %>
