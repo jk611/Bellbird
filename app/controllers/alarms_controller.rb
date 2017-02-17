@@ -8,11 +8,9 @@ class AlarmsController < ApplicationController
 
     respond_to do |format|
       if @alarm.save
-        format.html { redirect_to root_path, notice: 'Alarm was successfully created.' }
-        format.json { render :show, status: :created, location: @alarm }
+        format.html { redirect_to root_path, notice: 'SUCCESSFULLY ALERTED!!!' }
       else
-        format.html { render :new }
-        format.json { render json: @alarm.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, :flash => { :error => @alarm.errors.full_messages.join(', ') } }
       end
     end
   end

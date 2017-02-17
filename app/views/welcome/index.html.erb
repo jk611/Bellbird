@@ -1,14 +1,29 @@
-<%= form_for @alarm do |f| %>
-  <%= f.text_area(:content, size: '50x10', :class => "alarm") %>
+<%= form_for @alarm, :html => {:class => 'form-group'} do |f| %>
+  <%= f.text_area(:content, size: '50x10', :class => "form-control alarm") %>
   <br>
-  <%= f.submit %>
+  <div class=text-right>
+  	<button type="submit" class="btn btn-lg">
+  		<%= fa_icon "bullhorn" %> Alert
+  	</button>
+  </div>
 <% end %>
 
+<ul class="list-group">
 <% @alarms.each do |alarm| %>
-	<div>
-		<%= alarm.content %> <%= alarm.votes_string %>
-	</div>
-	<form action="<%= upvote_path(id: alarm.id) %>" method="post">
-	    <input type="submit" value="Upvote" />
-	</form>
+	<li class="list-group-item alert-list">
+		<span class="content">
+			<div class="meta">	
+			<%= time_ago_in_words(alarm.created_at) %> ago
+			</div>
+			<div>
+			<%= alarm.content %>
+			</div>
+		</span>
+		<form action="<%= upvote_path(id: alarm.id) %>" method="post">
+			<button type="submit" class="btn btn-success btn-sm">
+			    <%= fa_icon "thumbs-up" %> <%= alarm.votes_string %>
+			</button>
+		</form>
+	</li>
 <% end %>
+</ul>
