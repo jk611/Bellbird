@@ -1,4 +1,6 @@
 class AlarmsController < ApplicationController
+	before_action :set_alarm, only: [:upvote]
+
   # POST /alarms
   # POST /alarms.json
   def create
@@ -13,6 +15,11 @@ class AlarmsController < ApplicationController
         format.json { render json: @alarm.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def upvote
+  	@alarm.upvote
+  	redirect_to root_path, notice: 'Alarm was successfully upvoted.'
   end
 
 

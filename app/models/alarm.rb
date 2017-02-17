@@ -2,6 +2,18 @@ class Alarm < ActiveRecord::Base
    before_save :uppercase_content
    after_create :push_notification
 
+   def upvote
+   	 self.votes = self.votes + 1
+   	 self.save
+   end
+
+   def votes_string
+   	if votes > 0
+   		return votes.to_s + " vote".pluralize( votes )
+   	end
+   	return ""
+   end
+
 
    private
 

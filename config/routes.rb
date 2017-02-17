@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :alarms
+  post 'alarms/:id/upvote' => 'alarms#upvote', :as => :upvote
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

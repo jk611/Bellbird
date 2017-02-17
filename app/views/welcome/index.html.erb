@@ -6,6 +6,9 @@
 
 <% @alarms.each do |alarm| %>
 	<div>
-		<%= alarm.content %>
+		<%= alarm.content %> <%= alarm.votes_string %>
 	</div>
+	<form action="<%= upvote_path(id: alarm.id) %>" method="post">
+	    <input type="submit" value="Upvote" />
+	</form>
 <% end %>
